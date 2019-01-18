@@ -27,6 +27,7 @@ class PropelTypes
     const DECIMAL = "DECIMAL";
     const TINYINT = "TINYINT";
     const SMALLINT = "SMALLINT";
+    const MEDIUMINT = "MEDIUMINT";
     const INTEGER = "INTEGER";
     const BIGINT = "BIGINT";
     const REAL = "REAL";

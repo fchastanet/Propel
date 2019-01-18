@@ -221,8 +221,13 @@ class Column extends XMLElement
             } else {
                 $size = $this->getAttribute("size");
             }
-            $this->getDomain()->replaceSize($size);
+
+            if ($this->getPlatform()->hasSize($this->getDomain()->getType())) {
+                $this->getDomain()->replaceSize($size);
+            }
+            
             $this->getDomain()->replaceScale($this->getAttribute("scale"));
+            $this->getDomain()->replaceUnsigned($this->getAttribute("unsigned"));
 
             $defval = $this->getAttribute("defaultValue", $this->getAttribute("default"));
             if ($defval !== null && strtolower($defval) !== 'null') {
@@ -1078,6 +1083,24 @@ class Column extends XMLElement
     public function setSize($newSize)
     {
         $this->domain->setSize($newSize);
+    }
+
+    /**
+     * Returns true if unsigned
+     * @return string
+     */
+    public function getUnsigned()
+    {
+        return $this->domain ? $this->domain->getUnsigned() : false;
+    }
+
+    /**
+     * Set the size of the column
+     * @param string $newUnsigned
+     */
+    public function setUnsigned($newUnsigned)
+    {
+        $this->domain->setUnsigned($newUnsigned);
     }
 
     /**
