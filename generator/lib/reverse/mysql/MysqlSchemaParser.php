@@ -32,7 +32,7 @@ class MysqlSchemaParser extends BaseSchemaParser
     private static $mysqlTypeMap = array(
         'tinyint' => PropelTypes::TINYINT,
         'smallint' => PropelTypes::SMALLINT,
-        'mediumint' => PropelTypes::SMALLINT,
+        'mediumint' => PropelTypes::MEDIUMINT,
         'int' => PropelTypes::INTEGER,
         'integer' => PropelTypes::INTEGER,
         'bigint' => PropelTypes::BIGINT,
