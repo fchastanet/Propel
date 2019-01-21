@@ -1008,6 +1008,10 @@ class Column extends XMLElement
         $colNode->setAttribute('type', $this->getType());
 
         $domain = $this->getDomain();
+        
+        if ($domain->getUnsigned()) {
+            $colNode->setAttribute('unsigned', 'true');
+        }
 
         if ($domain->getSize() !== null) {
             $colNode->setAttribute('size', $domain->getSize());
