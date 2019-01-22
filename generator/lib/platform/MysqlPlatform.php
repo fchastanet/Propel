@@ -36,7 +36,7 @@ class MysqlPlatform extends DefaultPlatform
     protected function initialize()
     {
         parent::initialize();
-        $this->setSchemaDomainMapping(new Domain(PropelTypes::BOOLEAN, "tinyint", null, null, true));
+        $this->setSchemaDomainMapping(new Domain(PropelTypes::BOOLEAN, "tinyint", null, null, null));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::MEDIUMINT, "mediumint"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::NUMERIC, "DECIMAL"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::LONGVARCHAR, "TEXT"));
@@ -51,7 +51,7 @@ class MysqlPlatform extends DefaultPlatform
         $this->setSchemaDomainMapping(new Domain(PropelTypes::DATETIME, "DATETIME"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::OBJECT, "TEXT"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::PHP_ARRAY, "TEXT"));
-        $this->setSchemaDomainMapping(new Domain(PropelTypes::ENUM, "tinyint", null, null, true));
+        $this->setSchemaDomainMapping(new Domain(PropelTypes::ENUM, "tinyint", null, null, null));
     }
 
     public function setGeneratorConfig(GeneratorConfigInterface $generatorConfig)
