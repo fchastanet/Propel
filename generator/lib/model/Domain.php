@@ -288,12 +288,6 @@ class Domain extends XMLElement
         if ($value !== null) {
             $this->propelType = $value;
         }
-        if (strtoupper($value) === PropelTypes::CHAR && $this->size === null) {
-            $this->size = 1;
-        }
-        if (strtoupper($value) === PropelTypes::BOOLEAN && $this->unsigned === null) {
-            $this->unsigned = true;
-        }
     }
 
     /**
