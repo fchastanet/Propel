@@ -38,6 +38,7 @@ class PropelTypes
     const LONGVARBINARY = "LONGVARBINARY";
     const BLOB = "BLOB";
     const DATE = "DATE";
+    const DATETIME = "DATETIME";
     const TIME = "TIME";
     const TIMESTAMP = "TIMESTAMP";
     const BU_DATE = "BU_DATE";
@@ -160,6 +161,7 @@ class PropelTypes
             self::DATE => self::DATE,
             self::TIME => self::TIME,
             self::TIMESTAMP => self::TIMESTAMP,
+            self::DATETIME => self::DATETIME,
             self::BOOLEAN => self::BOOLEAN,
             self::BOOLEAN_EMU => self::BOOLEAN_EMU,
             self::OBJECT => self::OBJECT,
