@@ -369,9 +369,27 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
         if ($autoIncrement = $col->getAutoIncrementString()) {
             $ddl[] = $autoIncrement;
         }
+
+        $comments = [];
         if ($col->getDescription()) {
-            $ddl[] = 'COMMENT ' . $this->quote($col->getDescription());
+            $comments[] = $this->quote($col->getDescription());
         }
+        if ($col->isEnumType()) {
+            // This column is an ENUM. Possible values are : ALL (0), GROUPS (1), PUBLISHER (2)'
+            if ($col->getValueSet() === null) {
+                $comments[] = $this->quote('This column is an ENUM. without values set defined');
+            } else {
+                $comment = 'This column is an ENUM. Possible values are :';
+                foreach ($col->getValueSet() as $key => $value) {
+                    $comment .= " $value ($key),";
+                }
+                $comments[] = $this->quote(rtrim($comment, ','));
+            }
+        }
+        if (!empty($comments)) {
+            $ddl[] = 'COMMENT ' . join(' - ', $comments);
+        }
+
 
         return implode(' ', $ddl);
     }
