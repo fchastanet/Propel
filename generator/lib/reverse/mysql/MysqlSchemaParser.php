@@ -191,6 +191,9 @@ class MysqlSchemaParser extends BaseSchemaParser
         $/x';
         if (preg_match($regexp, $row['Type'], $matches)) {
             $nativeType = $matches[1];
+            // problem here ENUM and BOOLEAN propel types are tinyint,
+            // and will be detected as TINYINT propel type instead
+            // PropelDatabaseDiff should take care of this case
             $propelType = $this->getMappedPropelType($nativeType);
             if (!$propelType) {
                 $propelType = Column::DEFAULT_TYPE;
