@@ -372,22 +372,22 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
 
         $comments = [];
         if ($col->getDescription()) {
-            $comments[] = $this->quote($col->getDescription());
+            $comments[] = $col->getDescription();
         }
         if ($col->isEnumType()) {
             // This column is an ENUM. Possible values are : ALL (0), GROUPS (1), PUBLISHER (2)'
             if ($col->getValueSet() === null) {
-                $comments[] = $this->quote('This column is an ENUM. without values set defined');
+                $comments[] = 'This column is an ENUM. without values set defined';
             } else {
                 $comment = 'This column is an ENUM. Possible values are :';
                 foreach ($col->getValueSet() as $key => $value) {
                     $comment .= " $value ($key),";
                 }
-                $comments[] = $this->quote(rtrim($comment, ','));
+                $comments[] = rtrim($comment, ',');
             }
         }
         if (!empty($comments)) {
-            $ddl[] = 'COMMENT ' . join(' - ', $comments);
+            $ddl[] = 'COMMENT ' . $this->quote(join(' - ', $comments));
         }
 
 
