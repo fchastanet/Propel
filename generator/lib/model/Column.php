@@ -36,6 +36,7 @@ class Column extends XMLElement
     public static $valid_visibilities = array('public', 'protected', 'private');
 
     private $name;
+    private $skipSqlNamePattern;
     private $description;
     private $phpName = null;
     private $phpNamingMethod;
@@ -159,6 +160,7 @@ class Column extends XMLElement
             }
 
             $this->name = $this->getAttribute("name");
+            $this->skipSqlNamePattern = $this->getAttribute('skipSqlNamePattern');
             $this->phpName = $this->getAttribute("phpName");
             $this->phpType = $this->getAttribute("phpType");
 
@@ -289,6 +291,39 @@ class Column extends XMLElement
     public function setDomain(Domain $domain)
     {
         $this->domain = $domain;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkipSqlNamePattern()
+    {
+        return $this->skipSqlNamePattern;
+    }
+
+    /**
+     * @param mixed $namePattern
+     * @return Column
+     */
+    public function setSkipSqlNamePattern($skipSqlNamePattern)
+    {
+        $this->skipSqlNamePattern = $namePattern;
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return bool true if name matches the column name pattern
+     */
+    public function isMatchingSkipSqlNamePattern($name, $caseInsensitive = false) {
+        if ($this->skipSqlNamePattern === null) {
+            return true;
+        }
+        $pattern = "/{$this->skipSqlNamePattern}/";
+        if ($caseInsensitive) {
+            $pattern .= 'i';
+        }
+        return preg_match($pattern, $name) === 1;
     }
 
     /**
@@ -1027,6 +1062,10 @@ class Column extends XMLElement
 
         if ($this->phpName !== null) {
             $colNode->setAttribute('phpName', $this->getPhpName());
+        }
+
+        if ($this->skipSqlNamePattern !== null) {
+            $colNode->setAttribute('skipSqlNamePattern', $this->getSkipSqlNamePattern());
         }
 
         $colNode->setAttribute('type', $this->getType());

@@ -197,6 +197,9 @@ class ".$this->getClassname()." extends TableMap
             $script .= "
         // columns";
         foreach ($table->getColumns() as $col) {
+            if ($col->getSkipSqlNamePattern() !== null) {
+                continue;
+            }
             $cup=$col->getName();
             $cfc=$col->getPhpName();
             if (!$col->getSize()) {

@@ -55,6 +55,9 @@ abstract class ObjectBuilder extends OMBuilder
         $table = $this->getTable();
 
         foreach ($table->getColumns() as $col) {
+            if ($col->getSkipSqlNamePattern() !== null) {
+                continue;
+            }
 
             // if they're not using the DateTime class than we will generate "compatibility" accessor method
             if (PropelTypes::isTemporalType($col->getType())) {
@@ -87,6 +90,9 @@ abstract class ObjectBuilder extends OMBuilder
     protected function addColumnMutatorMethods(&$script)
     {
         foreach ($this->getTable()->getColumns() as $col) {
+            if ($col->getSkipSqlNamePattern() !== null) {
+                continue;
+            }
             if ($col->isLobType()) {
                 $this->addLobMutator($script, $col);
             } elseif ($col->getType() === PropelTypes::DATE || $col->getType() === PropelTypes::TIME || $col->getType() === PropelTypes::TIMESTAMP) {
@@ -176,6 +182,9 @@ abstract class ObjectBuilder extends OMBuilder
     protected function hasDefaultValues()
     {
         foreach ($this->getTable()->getColumns() as $col) {
+            if ($col->getSkipSqlNamePattern() !== null) {
+                continue;
+            }
             if($col->getDefaultValue() !== null) return true;
         }
 
