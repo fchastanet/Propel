@@ -183,6 +183,22 @@ abstract class ObjectBuilder extends OMBuilder
     }
 
     /**
+     * @return bool return true if at least one column has default value that is not an expression
+     */
+    protected function hasDefaultValuesNotExpression()
+    {
+        foreach ($this->getTable()->getColumns() as $col) {
+            /* @var Column $col */
+            if ($col->getSkipSqlNamePattern() !== null) {
+                continue;
+            }
+            if($col->getDefaultValue() !== null && !$col->getDefaultValue()->isExpression()) return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Checks whether any registered behavior on that table has a modifier for a hook
      * @param  string  $hookName The name of the hook as called from one of this class methods, e.g. "preSave"
      * @return boolean

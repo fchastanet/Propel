@@ -277,7 +277,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
             $this->addScheduledForDeletionAttribute($script, $fkName);
         }
 
-        if ($this->hasDefaultValues()) {
+        if ($this->hasDefaultValuesNotExpression()) {
             $this->addApplyDefaultValues($script);
             $this->addConstructor($script);
         }
@@ -669,11 +669,15 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
      */
     protected function addApplyDefaultValues(&$script)
     {
-        $this->addApplyDefaultValuesComment($script);
-        $this->addApplyDefaultValuesOpen($script);
-        $this->addApplyDefaultValuesBody($script);
-        $this->addApplyDefaultValuesClose($script);
+        $this->addApplyDefaultValuesBody($bodyScript);
+        if (!empty($bodyScript)) {
+            $this->addApplyDefaultValuesComment($script);
+            $this->addApplyDefaultValuesOpen($script);
+            $script .= $bodyScript;
+            $this->addApplyDefaultValuesClose($script);
+        }
     }
+
 
     /**
      * Adds the comment for the applyDefaults method
@@ -5475,7 +5479,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         \$this->alreadyInClearAllReferencesDeep = false;
         \$this->clearAllReferences();";
 
-        if ($this->hasDefaultValues()) {
+        if ($this->hasDefaultValuesNotExpression()) {
             $script .= "
         \$this->applyDefaultValues();";
         }
