@@ -57,7 +57,7 @@ abstract class ObjectBuilder extends OMBuilder
         foreach ($table->getColumns() as $col) {
 
             // if they're not using the DateTime class than we will generate "compatibility" accessor method
-            if ($col->getType() === PropelTypes::DATE || $col->getType() === PropelTypes::TIME || $col->getType() === PropelTypes::TIMESTAMP) {
+            if (PropelTypes::isTemporalType($col->getType())) {
                 $this->addTemporalAccessor($script, $col);
             } elseif ($col->getType() === PropelTypes::OBJECT) {
                 $this->addObjectAccessor($script, $col);

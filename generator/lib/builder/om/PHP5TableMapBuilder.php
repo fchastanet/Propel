@@ -204,26 +204,31 @@ class ".$this->getClassname()." extends TableMap
             } else {
                 $size = $col->getSize();
             }
+            if ($col->getUnsigned()) {
+                $unsigned = 'true';
+            } else {
+                $unsigned = "null";
+            }
             $default = $col->getDefaultValueString();
             if ($col->isPrimaryKey()) {
                 if ($col->isForeignKey()) {
                     foreach ($col->getForeignKeys() as $fk) {
                         $script .= "
-        \$this->addForeignPrimaryKey('$cup', '$cfc', '".$col->getType()."' , '".$fk->getForeignTableName()."', '".$fk->getMappedForeignColumn($col->getName())."', ".($col->isNotNull() ? 'true' : 'false').", ".$size.", $default);";
+        \$this->addForeignPrimaryKey('$cup', '$cfc', '".$col->getType()."' , '".$fk->getForeignTableName()."', '".$fk->getMappedForeignColumn($col->getName())."', ".($col->isNotNull() ? 'true' : 'false').", ".$size.", ".$unsigned.", $default);";
                     }
                 } else {
                     $script .= "
-        \$this->addPrimaryKey('$cup', '$cfc', '".$col->getType()."', ".var_export($col->isNotNull(), true).", ".$size.", $default);";
+        \$this->addPrimaryKey('$cup', '$cfc', '".$col->getType()."', ".var_export($col->isNotNull(), true).", ".$size.", ".$unsigned.", $default);";
                 }
             } else {
                 if ($col->isForeignKey()) {
                     foreach ($col->getForeignKeys() as $fk) {
                         $script .= "
-        \$this->addForeignKey('$cup', '$cfc', '".$col->getType()."', '".$fk->getForeignTableName()."', '".$fk->getMappedForeignColumn($col->getName())."', ".($col->isNotNull() ? 'true' : 'false').", ".$size.", $default);";
+        \$this->addForeignKey('$cup', '$cfc', '".$col->getType()."', '".$fk->getForeignTableName()."', '".$fk->getMappedForeignColumn($col->getName())."', ".($col->isNotNull() ? 'true' : 'false').", ".$size.", ".$unsigned.", $default);";
                     }
                 } else {
                     $script .= "
-        \$this->addColumn('$cup', '$cfc', '".$col->getType()."', ".var_export($col->isNotNull(), true).", ".$size.", $default);";
+        \$this->addColumn('$cup', '$cfc', '".$col->getType()."', ".var_export($col->isNotNull(), true).", ".$size.", ".$unsigned.", $default);";
                 }
             } // if col-is prim key
             if ($col->getValueSet()) {
