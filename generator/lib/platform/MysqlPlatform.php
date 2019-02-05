@@ -370,24 +370,9 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
             $ddl[] = $autoIncrement;
         }
 
-        $comments = [];
-        if ($col->getDescription()) {
-            $comments[] = $col->getDescription();
-        }
-        if ($col->isEnumType()) {
-            // This column is an ENUM. Possible values are : ALL (0), GROUPS (1), PUBLISHER (2)'
-            if ($col->getValueSet() === null) {
-                $comments[] = 'This column is an ENUM. without values set defined';
-            } else {
-                $comment = 'This column is an ENUM. Possible values are :';
-                foreach ($col->getValueSet() as $key => $value) {
-                    $comment .= " $value ($key),";
-                }
-                $comments[] = rtrim($comment, ',');
-            }
-        }
-        if (!empty($comments)) {
-            $ddl[] = 'COMMENT ' . $this->quote(join(' - ', $comments));
+        $description = $col->getEnhancedDescription();
+        if (!empty($description)) {
+            $ddl[] = 'COMMENT ' . $this->quote($description);
         }
 
 

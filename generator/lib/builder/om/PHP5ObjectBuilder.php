@@ -796,7 +796,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         $script .= "
     /**
      * Get the [optionally formatted] temporal [$clo] column value.
-     * ".$col->getDescription();
+     * ".$col->getEnhancedDescription();
         if (!$useDateTime) {
             $script .= "
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
@@ -1076,7 +1076,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         $script .= "
     /**
      * Get the [$clo] column value.
-     * ".$col->getDescription();
+     * ".$col->getEnhancedDescription();
         if ($col->isLazyLoad()) {
             $script .= "
      * @param PropelPDO \$con An optional PropelPDO connection to use for fetching this lazy-loaded column.";
@@ -1132,7 +1132,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
     /**
      * Test the presence of a value in the [$clo] array column value.
      * @param mixed \$value
-     * ".$col->getDescription();
+     * ".$col->getEnhancedDescription();
         if ($col->isLazyLoad()) {
             $script .= "
      * @param PropelPDO \$con An optional PropelPDO connection to use for fetching this lazy-loaded column.";
@@ -1178,7 +1178,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         $script .= "
     /**
      * Get the [$clo] column value.
-     * ".$col->getDescription();
+     * ".$col->getEnhancedDescription();
         if ($col->isLazyLoad()) {
             $script .= "
      * @param PropelPDO \$con An optional PropelPDO connection to use for fetching this lazy-loaded column.";
@@ -1394,7 +1394,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         $script .= "
     /**
      * Set the value of [$clo] column.
-     * ".$col->getDescription()."
+     * ".$col->getEnhancedDescription()."
      * @param ".$col->getPhpType()." \$v new value
      * @return ".$this->getObjectClassname()." The current object (for fluent API support)
      */";
@@ -1620,7 +1620,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         $script .= "
     /**
      * Sets the value of [$clo] column to a normalized version of the date/time value specified.
-     * ".$col->getDescription()."
+     * ".$col->getEnhancedDescription()."
      * @param mixed \$v string, integer (timestamp), or DateTime value.
      *               Empty strings are treated as null.
      * @return ".$this->getObjectClassname()." The current object (for fluent API support)
@@ -1686,7 +1686,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
     /**
      * Adds a value to the [$clo] array column value.
      * @param mixed \$value
-     * ".$col->getDescription();
+     * ".$col->getEnhancedDescription();
         if ($col->isLazyLoad()) {
             $script .= "
      * @param PropelPDO \$con An optional PropelPDO connection to use for fetching this lazy-loaded column.";
@@ -1724,7 +1724,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
     /**
      * Removes a value from the [$clo] array column value.
      * @param mixed \$value
-     * ".$col->getDescription();
+     * ".$col->getEnhancedDescription();
         if ($col->isLazyLoad()) {
             $script .= "
      * @param PropelPDO \$con An optional PropelPDO connection to use for fetching this lazy-loaded column.";
@@ -1765,7 +1765,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
         $script .= "
     /**
      * Set the value of [$clo] column.
-     * ".$col->getDescription()."
+     * ".$col->getEnhancedDescription()."
      * @param ".$col->getPhpType()." \$v new value
      * @return ".$this->getObjectClassname()." The current object (for fluent API support)
      * @throws PropelException - if the value is not accepted by this enum.
@@ -1835,7 +1835,7 @@ abstract class ".$this->getClassname()." extends ".$parentClass." ";
      *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
      *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
      * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     * ".$col->getDescription()."
+     * ".$col->getEnhancedDescription()."
      * @param boolean|integer|string \$v The new value
      * @return ".$this->getObjectClassname()." The current object (for fluent API support)
      */";

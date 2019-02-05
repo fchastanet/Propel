@@ -340,6 +340,30 @@ class Column extends XMLElement
     }
 
     /**
+     * @return string the description and some additional information
+     * floowing the type of the column
+     */
+    public function getEnhancedDescription() {
+        $comments = [];
+        if ($this->getDescription()) {
+            $comments[] = $this->getDescription();
+        }
+        if ($this->isEnumType()) {
+            // This column is an ENUM. Possible values are : ALL (0), GROUPS (1), PUBLISHER (2)'
+            if ($this->getValueSet() === null) {
+                $comments[] = 'This column is an ENUM. without values set defined';
+            } else {
+                $comment = 'This column is an ENUM. Possible values are :';
+                foreach ($this->getValueSet() as $key => $value) {
+                    $comment .= " $value ($key),";
+                }
+                $comments[] = rtrim($comment, ',');
+            }
+        }
+        return join(' - ', $comments);
+    }
+
+    /**
      * Set the description for the Table
      *
      * @param			 newDescription description for the Table
