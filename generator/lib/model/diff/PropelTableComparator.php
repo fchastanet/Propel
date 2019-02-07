@@ -118,7 +118,7 @@ class PropelTableComparator
 
         // check for new columns in $toTable
         foreach ($toTableColumns as $column) {
-            $columns = $this->getFromTable()->getSkippedSqlNamePatternColumns($column->getName(), $caseInsensitive);
+            $columns = $this->getToTable()->getSkippedSqlNamePatternColumns($column->getName(), $caseInsensitive);
             if (!empty($columns)) {
                 // we can ignore this column
                 continue;
