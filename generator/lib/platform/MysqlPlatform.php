@@ -750,7 +750,7 @@ RENAME TABLE %s TO %s;
     {
         return !in_array($sqlType, [
             'MEDIUMTEXT', 'LONGTEXT', 'BLOB', 'MEDIUMBLOB', 'LONGBLOB',
-            'INTEGER', 'TINYINT', 'BOOLEAN', 'MEDIUMINT', 'INT', 'SMALLINT'
+            'INTEGER', 'TINYINT', 'BOOLEAN', 'MEDIUMINT', 'INT', 'SMALLINT', 'BIGINT'
         ]);
     }
 
