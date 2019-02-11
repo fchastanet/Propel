@@ -45,9 +45,7 @@ class MysqlPlatform extends DefaultPlatform
         $this->setSchemaDomainMapping(new Domain(PropelTypes::LONGVARBINARY, "LONGBLOB"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::BLOB, "LONGBLOB"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::CLOB, "LONGTEXT"));
-        $timestamp = new Domain(PropelTypes::TIMESTAMP, "TIMESTAMP");
-        $timestamp->setDefaultValue(new ColumnDefaultValue('CURRENT_TIMESTAMP', ColumnDefaultValue::TYPE_EXPR));
-        $this->setSchemaDomainMapping($timestamp);
+        $this->setSchemaDomainMapping(new Domain(PropelTypes::TIMESTAMP, "TIMESTAMP"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::DATETIME, "DATETIME"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::OBJECT, "TEXT"));
         $this->setSchemaDomainMapping(new Domain(PropelTypes::PHP_ARRAY, "TEXT"));
@@ -237,7 +235,12 @@ SET FOREIGN_KEY_CHECKS = 1;
         $tableOptions = $tableOptions ? ' ' . implode(' ', $tableOptions) : '';
         $sep          = ",\n    ";
 
-        $pattern = /** @lang text*/ 'CREATE TABLE %s(%s) %s=%s%s;';
+        $pattern = /** @lang text*/ '
+CREATE TABLE %s
+(
+    %s
+) %s=%s%s;
+';
 
         return sprintf($pattern,
             $this->quoteIdentifier($table->getName()),
@@ -379,26 +382,7 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
         return implode(' ', $ddl);
     }
 
-    public function getNullString($notNull)
-    {
-        return ($notNull ? "NOT NULL" : "NULL");
-    }
-
     /**
-     * Returns the SQL for the default value of a Column object
-     * @return string
-     */
-    public function getColumnDefaultValueDDL(Column $col)
-    {
-        $defaultValue = $col->getDefaultValue();
-        if ($defaultValue == null && !$col->isNotNull()) {
-            return 'DEFAULT NULL';
-        } else {
-            return parent::getColumnDefaultValueDDL($col);
-        }
-    }
-
-            /**
      * Creates a comma-separated list of column names for the index.
      * For MySQL unique indexes there is the option of specifying size, so we cannot simply use
      * the getColumnsList() method.
@@ -729,8 +713,13 @@ RENAME TABLE %s TO %s;
             $lines[] = $this->getAddColumnDDLBits($column);
         }
 
-        $pattern = "\nALTER TABLE %s\n    %s;";
-        $sep = ",\n    ";
+        $pattern = "
+ALTER TABLE %s
+    %s;
+";
+
+        $sep = ",
+    ";
 
         return sprintf($pattern,
             $this->quoteIdentifier($tableName),

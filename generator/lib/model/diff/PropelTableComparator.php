@@ -119,7 +119,7 @@ class PropelTableComparator
         // check for new columns in $toTable
         foreach ($toTableColumns as $column) {
             if (empty($this->getFromTable()->getSkippedSqlNamePatternColumns($column->getName()))) {
-                if (!$this->getToTable()->hasColumn($column->getName(), $caseInsensitive)) {
+                if (!$this->getFromTable()->hasColumn($column->getName(), $caseInsensitive)) {
                     $this->tableDiff->addAddedColumn($column->getName(), $column);
                     $columnDifferences++;
                 }

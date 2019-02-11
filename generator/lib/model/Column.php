@@ -224,7 +224,7 @@ class Column extends XMLElement
                 $size = $this->getAttribute("size");
             }
 
-            if ($this->getPlatform()->hasSize($this->getDomain()->getType())) {
+            if ($this->getPlatform() === null || $this->getPlatform()->hasSize($this->getDomain()->getType())) {
                 $this->getDomain()->replaceSize($size);
             }
             
