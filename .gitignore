@@ -4,6 +4,8 @@ test/fixtures/namespaced/build/
 test/fixtures/nestedset/build/
 test/fixtures/schemas/build/
 test/fixtures/treetest/build/
+test/**/build.properties
+test/**/runtime-conf.xml
 vendor/
 composer.lock
 composer.phar

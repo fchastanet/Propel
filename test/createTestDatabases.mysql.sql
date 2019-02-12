@@ -1,0 +1,17 @@
+SET FOREIGN_KEY_CHECKS=0;
+DROP SCHEMA IF EXISTS test;
+DROP SCHEMA IF EXISTS nestedset;
+DROP SCHEMA IF EXISTS bookstore_schemas;
+DROP SCHEMA IF EXISTS contest;
+DROP SCHEMA IF EXISTS second_hand_books;
+DROP SCHEMA IF EXISTS reverse_bookstore;
+DROP SCHEMA IF EXISTS tree;
+
+# create dbs
+CREATE DATABASE test;
+CREATE DATABASE nestedset;
+CREATE DATABASE bookstore_schemas;
+CREATE DATABASE contest;
+CREATE DATABASE second_hand_books;
+CREATE DATABASE reverse_bookstore;
+CREATE DATABASE tree;
