@@ -20,7 +20,7 @@
 					-->
 					<user>root</user>
 					<password>root</password>
-				<options>
+					<options>
 						<option id="ATTR_PERSISTENT">false</option>
 					</options>
 					<attributes>

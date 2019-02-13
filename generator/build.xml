@@ -33,6 +33,7 @@
 <property name="build.properties" value="build.properties"/>
 
 <target name="check-buildprops-exists">
+	<echo message="is file exists ? ${propel.project.dir}/${build.properties}" />
   <available file="${propel.project.dir}/${build.properties}" property="projBuildPopertiesExists"/>
 </target>
 

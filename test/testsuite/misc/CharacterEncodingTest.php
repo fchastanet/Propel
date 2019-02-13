@@ -43,7 +43,7 @@ class CharacterEncodingTest extends BookstoreTestBase
 
     public function testUtf8()
     {
-        $this->markTestSkipped();
+        $this->markTestSkipped("test iconv passed, but why ?");
 
         $db = Propel::getDB(BookPeer::DATABASE_NAME);
 
@@ -74,11 +74,11 @@ class CharacterEncodingTest extends BookstoreTestBase
 
     public function testInvalidCharset()
     {
-        $this->markTestSkipped();
+        $this->markTestSkipped("test iconv passed, but why ?");
 
         $db = Propel::getDB(BookPeer::DATABASE_NAME);
         if ($db instanceof DBSQLite) {
-            $this->markTestSkipped();
+            $this->markTestSkipped("Not testable on DB SQLite");
         }
 
         $a = new Author();

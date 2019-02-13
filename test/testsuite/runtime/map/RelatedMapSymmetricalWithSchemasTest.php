@@ -30,7 +30,7 @@ class RelatedMapSymmetricalWithSchemasTest extends SchemasTestBase
     public function testOneToMany()
     {
         // passes on its own, but not with the full tests suite
-        $this->markTestSkipped();
+        $this->markTestSkipped("passes on its own, but not with the full tests suite");
         $contestTable = $this->databaseMap->getTableByPhpName('ContestBookstoreContest');
         $contestToBookstore = $contestTable->getRelation('BookstoreSchemasBookstore');
         $bookstoreTable = $this->databaseMap->getTableByPhpName('BookstoreSchemasBookstore');

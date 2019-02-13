@@ -60,7 +60,7 @@ class PropelExceptionTest extends TestCase
     public function testGetPrevious()
     {
         if (version_compare(PHP_VERSION, '5.3.0') < 0) {
-            $this->markTestSkipped();
+            $this->markTestSkipped("requires PHP 5.3");
         }
         $e1 = new FooException('real cause');
         $e = new PropelException('this is an error', $e1);

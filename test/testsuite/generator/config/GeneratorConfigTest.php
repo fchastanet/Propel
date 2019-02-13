@@ -30,7 +30,7 @@ class GeneratorConfigTest extends TestCase
         $file = $this->pathToFixtureFiles . '/Foobar.php';
 
         if (!file_exists($file)) {
-            $this->markTestSkipped();
+            $this->markTestSkipped("file $file does not exist");
         }
 
         // Load the file to simulate the autoloading process
@@ -47,7 +47,7 @@ class GeneratorConfigTest extends TestCase
         $file = $this->pathToFixtureFiles . '/FoobarWithNS.php';
 
         if (!file_exists($file)) {
-            $this->markTestSkipped();
+            $this->markTestSkipped("File $file does not exist");
         }
 
         // Load the file to simulate the autoloading process

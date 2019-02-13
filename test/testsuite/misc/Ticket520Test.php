@@ -187,7 +187,7 @@ class Ticket520Test extends BookstoreTestBase
 
     public function testDeletedBookDisappears()
     {
-        $this->markTestSkipped();
+        $this->markTestSkipped("Skipped bu why ?");
 
         $a = new Author();
         $a->setFirstName("Douglas");
@@ -223,7 +223,7 @@ class Ticket520Test extends BookstoreTestBase
         of just getBooks(). get...Join...() does not contain the check whether
         the current object is new, it will always consult the DB and lose the
         new objects entirely. Thus the test fails. (At least for Propel 1.2 ?!?) */
-        $this->markTestSkipped();
+        $this->markTestSkipped("TODO");
 
         $a = new Author();
         $a->setFirstName("Douglas");

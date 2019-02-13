@@ -66,6 +66,9 @@ class PropelQueryTest extends BookstoreTestBase
      */
     public function testFilterById()
     {
+        BookstoreDataPopulator::depopulate();
+        BookstoreDataPopulator::populate();
+
         // find by single id
         $book = PropelQuery::from('Book b')
             ->where('b.Title like ?', 'Don%')

@@ -378,7 +378,14 @@ class PropelArrayFormatterWithTest extends BookstoreEmptyTestBase
         BookPeer::clearInstancePool();
         AuthorPeer::clearInstancePool();
         ReviewPeer::clearInstancePool();
+        // save a book with no author
+        $b = new Book();
+        $b->setTitle('Foo');
+        $b->setIsbn('Fr');
+        $b->save();
+
         $review = new Review();
+        $review->setBook($b);
         $review->setReviewedBy('Toot');
         $review->setRecommended('0');
         $review->save($this->con);

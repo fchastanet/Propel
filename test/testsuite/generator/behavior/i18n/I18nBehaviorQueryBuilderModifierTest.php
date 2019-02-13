@@ -257,7 +257,7 @@ EOF;
     // $t2 = $o->getTranslation('fr_FR'); // we MUST issue a query here
     public function testJoinWithI18nDoesNotExecuteAdditionalQueryWhenNoTranslationIsFound()
     {
-        $this->markTestSkipped();
+        $this->markTestSkipped("Skipped bu why ?");
         $con = Propel::getConnection(I18nBehaviorTest11Peer::DATABASE_NAME);
         $con->useDebug(true);
         I18nBehaviorTest11Query::create()->deleteAll();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<database name="treetest" defaultIdMethod="native">
-	<table name="test" treeMode="NestedSet" description="Test">
+<database name="nestedset" defaultIdMethod="native">
+	<table name="nestedset" treeMode="NestedSet" description="Test">
 		<column
 			name="id"
 			required="true"
@@ -29,10 +29,10 @@
 		<unique name="pk">
 			<unique-column name="label"/>
 		</unique>
-		<index name="left">
+		<index name="left_index">
 			<index-column name="left"/>
 		</index>
-		<index name="right">
+		<index name="right_index">
 			<index-column name="right"/>
 		</index>
 	</table>

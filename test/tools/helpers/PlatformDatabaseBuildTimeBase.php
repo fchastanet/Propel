@@ -32,7 +32,7 @@ class PlatformDatabaseBuildTimeBase extends TestCase
         }
 
         $xmlDom = new DOMDocument();
-        $xmlDom->load(dirname(__FILE__) . '/../../fixtures/reverse/mysql/runtime-conf.xml');
+        $xmlDom->load(dirname(__FILE__) . '/../../fixtures/reverse/runtime-conf.xml');
         $xml = simplexml_load_string($xmlDom->saveXML());
         $phpconf = PlatformDatabaseBuildTimeBaseTask::simpleXmlToArray($xml);
 

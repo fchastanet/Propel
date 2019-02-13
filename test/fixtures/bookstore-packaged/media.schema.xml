@@ -2,6 +2,7 @@
 <!DOCTYPE database SYSTEM "../dtd/database.dtd">
 
 <database package="core.book" name="bookstore" defaultIdMethod="native">
+  <external-schema filename="book.schema.xml" />
 
   <!-- This table exists to explore/test the handling of BLOB/CLOB objects. -->
   <table name="media">

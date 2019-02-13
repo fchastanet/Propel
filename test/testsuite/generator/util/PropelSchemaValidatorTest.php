@@ -21,7 +21,14 @@ use PHPUnit\Framework\TestCase;
 class SchemaValidatorTest extends TestCase
 {
 
-    private $xsdFile = 'generator/resources/xsd/database.xsd';
+    private $xsdFile;
+
+    public function __construct($name = null, array $data = array(), $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->xsdFile = realpath(dirname(__FILE__) . '/../../../../generator/resources/xsd/database.xsd');
+    }
+
 
     protected function getAppDataForTable($table)
     {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<database name="treetest" defaultIdMethod="none">
+<database name="tree" defaultIdMethod="none">
 
-  <table name="test" treeMode="MaterializedPath" description="Test">
+  <table name="tree" treeMode="MaterializedPath" description="Test">
     <column
       name="npath"
       required="true"

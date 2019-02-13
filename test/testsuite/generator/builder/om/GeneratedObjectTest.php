@@ -737,7 +737,8 @@ class GeneratedObjectTest extends BookstoreTestBase
         $this->assertEquals(1, BookOpinionQuery::create()->count(), 'Only 1 BookOpinion; the new one got inserted and the previously associated one got deleted');
 
         $this->assertEquals(1, count($b->getBookOpinions()), 'Book has 1 BookOpinion');
-        $this->assertEquals(1, count($op2->getBook()), 'BookOpinion2 has a relation to the Book');
+        $this->assertNotNull($op2->getBook(), 'BookOpinion2 has a relation to the Book');
+        $this->assertEquals($b, $op2->getBook(), 'BookOpinion2 has a relation to the Book');
         $this->assertEquals(1, count($br1->getBookOpinions()), 'BookReader1 has 1 BookOpinion (BookOpinion1)');
         $this->assertEquals(1, count($br2->getBookOpinions()), 'BookReader2 has 1 BookOpinion (BookOpinion2)');
         
@@ -757,9 +758,9 @@ class GeneratedObjectTest extends BookstoreTestBase
         $this->assertFalse($op2->isDeleted(), 'BookOpinion2 is not deleted');
 
         $this->assertEquals(1, count($br1->getBookOpinions()), 'BookReader1 thinks it is assigned to 1 BookOpinion (BookOpinion1)');
-        $temp_op = $br1->getBookOpinions();
-        $this->assertEquals(spl_object_hash($op1), spl_object_hash($temp_op[0]), 'BookReader1 assigned BookOpinion is still BookOpinion1');
-        $this->assertFalse($temp_op[0]->isDeleted(), 'BookReader1 assigned BookOpinion still thinks it has not been deleted');
+        $temp_op1 = $br1->getBookOpinions()->getFirst();
+        $this->assertEquals(spl_object_hash($op1), spl_object_hash($temp_op1), 'BookReader1 assigned BookOpinion is still BookOpinion1');
+        $this->assertFalse($temp_op1->isDeleted(), 'BookReader1 assigned BookOpinion still thinks it has not been deleted');
 
         $br1->reload(true);  // and reset the relations
 

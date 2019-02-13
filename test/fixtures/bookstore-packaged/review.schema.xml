@@ -2,6 +2,7 @@
 <!DOCTYPE database SYSTEM "../dtd/database.dtd">
 
 <database package="core.review" name="bookstore" defaultIdMethod="native">
+  <external-schema filename="book.schema.xml" />
 
   <table name="review" description="Book Review">
     <behavior name="auto_add_pk" />
@@ -15,7 +16,7 @@
       name="review_date"
       required="true"
       type="DATE"
-	  default="01/01/2001"
+	  default="2001-01-01"
       description="Date of Review"/>
 	<column
       name="recommended"

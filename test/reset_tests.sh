@@ -49,6 +49,9 @@ if [[ ${#buildPropertiesFiles[@]} != 0 ]]; then
                 -e "s/<dsn>mysql:host=mysql/<dsn>mysql:host=${HOST}/g" \
                 -e "s#<password>root</password>#<password>${HOST_ROOT_PASSWORD}</password>#g" \
                 "${dir}/runtime-conf.xml" || exit 1
+        else
+            echo "missing file ${dir}/runtime-conf.${PLATFORM}.template.xml"
+            exit 1
         fi
     done
 fi
@@ -84,5 +87,7 @@ for dir in $REVERSE_DIRS ; do
     fi
 done
 
+echo "***************************************************************************"
 echo "you can now run unit tests by launching this command :"
-echo "phpunit ${CURRENT_DIR}"
+echo "\tcd ${ROOT_DIR} && phpunit"
+echo "***************************************************************************"
