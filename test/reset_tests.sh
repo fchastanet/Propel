@@ -2,7 +2,7 @@
 # Reset Propel tests fixtures
 # 2011 - William Durand <william.durand1@gmail.com>
 
-if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
+if [[ "$1" = "--help" ]]; then
     echo "Usage: $0 Platform Host HostRootPassword"
     echo "Platform - the platform to use (mysql, sqllite, ...)"
     echo "Host - hostname of the given platform"
@@ -14,9 +14,12 @@ CURRENT_DIR=$( cd "$( readlink -e "${BASH_SOURCE[0]%/*}" )" && pwd )
 ROOT_DIR=$( cd "$( readlink -e "${BASH_SOURCE[0]%/*}/.." )" && pwd )
 FIXTURES_DIR="${CURRENT_DIR}/fixtures"
 
-PLATFORM="$1"
-HOST="$2"
-HOST_ROOT_PASSWORD="$3"
+# takes argument 1 or DB env variable or mysql by default
+PLATFORM="${1:-${DB:-mysql}}"
+# takes argument 2 or DB_HOST env variable or localhost by default
+HOST="${2:-${DB_HOST:-localhost}}"
+# takes argument 3 or DB_USER env variable or root by default
+HOST_ROOT_PASSWORD="${3:-${DB_USER:-root}}"
 
 if [[ "$PLATFORM" != "mysql" ]]; then
     echo "only mysql platform is supported for the moment"
